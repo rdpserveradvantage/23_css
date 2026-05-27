@@ -1,0 +1,28 @@
+18/11/27 10:47:03 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor o8sm5153535pfa.42 - gsmtp<EOL>
+18/11/27 10:52:02 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor s9sm2943531pgl.88 - gsmtp<EOL>
+18/11/27 11:00:37 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor m67sm5649846pfb.25 - gsmtp<EOL>
+18/11/27 11:03:12 : Error connecting with SSL.<EOL>Error connecting with SSL.<EOL>error:1408F10B:SSL routines:SSL3_GET_RECORD:wrong version number
+18/11/27 11:08:27 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor s2-v6sm4078700pfk.133 - gsmtp<EOL>
+18/11/27 11:14:39 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor q25sm2565717pgb.2 - gsmtp<EOL>
+18/11/27 11:26:42 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor y26-v6sm3537215pfi.123 - gsmtp<EOL>
+18/11/27 11:36:51 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor l3sm3204737pga.92 - gsmtp<EOL>
+18/11/27 11:42:38 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor n23-v6sm3796699pfg.84 - gsmtp<EOL>
+18/11/28 10:39:14 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor k137sm8509545pfd.56 - gsmtp<EOL>
+18/11/28 10:42:53 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor b5sm9850050pfc.150 - gsmtp<EOL>
+18/11/28 10:56:57 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor h75sm4224470ywa.50 - gsmtp<EOL>
+18/11/28 11:00:39 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor t2sm9356257pfm.32 - gsmtp<EOL>
+18/11/28 11:04:46 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor m17-v6sm6793351pfi.102 - gsmtp<EOL>
+18/11/28 11:06:42 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor u137sm10667214pfc.140 - gsmtp<EOL>
+18/11/28 11:07:59 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor s2-v6sm14224402pfk.133 - gsmtp<EOL>
+18/11/28 11:10:19 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor c4sm14921638pfm.151 - gsmtp<EOL>
+18/11/28 11:12:49 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor m13sm1603929edd.2 - gsmtp<EOL>
+18/11/28 11:13:55 : Application-specific password required. Learn more at<EOL> https://support.google.com/mail/?p=InvalidSecondFactor t10-v6sm887307ejg.41 - gsmtp<EOL>
+18/11/28 11:32:38 : Socket Error # 10060<EOL>Connection timed out.
+18/12/15 15:47:35 : Socket Error # 11001<EOL>Host not found.
+19/01/04 12:21:13 : Username and Password not accepted. Learn more at<EOL> https://support.google.com/mail/?p=BadCredentials f6sm26650329ede.53 - gsmtp<EOL>
+19/02/22 16:49:14 : Socket Error # 10060<EOL>Connection timed out.
+19/03/04 11:39:06 : Socket Error # 11001<EOL>Host not found.
+19/07/24 20:13:13 : Socket Error # 10060<EOL>Connection timed out.
+19/08/02 16:29:32 : Socket Error # 10060<EOL>Connection timed out.
+19/08/02 16:29:39 : Socket Error # 10060<EOL>Connection timed out.
+19/08/13 13:42:25 : Socket Error # 10060<EOL>Connection timed out.
