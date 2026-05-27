@@ -1,0 +1,184 @@
+<?php
+include 'config.php';
+$que=$_POST['excelmail'];
+
+//header("Content-Type: application/vnd.ms-excel");   
+//header("Content-Disposition: attachment; filename=test.xls");
+//header("Pragma: no-cache");
+//header("Expires: 0");
+
+$sep = "\t"; 
+
+$sql="$que";
+//echo $sql;
+$sqlrun=mysqli_query($conn,$sql);
+$schema_insert =  "Client Name \t Incident Number \t Circle  \t Location \t ATMID \t Address  \t DVRIP \t Panel_make \t panelid  \t Zone \t Bank \t SupervisorName \t SupervisorNumber \t Aging  \t\n";
+while($row = mysqli_fetch_array($sqlrun)){
+    //$schema_insert = "";
+    
+    date_default_timezone_set('Asia/Kolkata');
+ $curentdt=date("Y-m-d");
+$date1=date_create($curentdt);
+//echo $row['qrt_arrangetime'];
+$datetime = new DateTime($row[20]);
+$createdate = $datetime->format('Y-m-d');
+$date2=date_create($createdate);
+$diff=date_diff($date1,$date2);
+$days= $diff->format(' %a days');
+
+            $schema_insert .= "$row[0]".$sep;
+            $schema_insert .= "$row[10]".$sep;
+            $schema_insert .= "$row[8].$row[9]".$sep;
+            $schema_insert .= "$row[3]".$sep;
+            $schema_insert .= "$row[2]".$sep;
+            $schema_insert .= "$row[4]".$sep;
+            $schema_insert .= "$row[5]".$sep;
+            
+            $schema_insert .= "$row[6]".$sep;
+            $schema_insert .= "$row[11]".$sep;
+            $schema_insert .= "$row[15]".$sep;
+            $schema_insert .= "$row[1]".$sep;
+            
+            $abc="select SupervisorName,Supervisornumber from esurvsites where ATM_ID='".$row[2]."'";
+            //echo $abc;
+            $runabc=mysqli_query($conn,$abc);
+            $fetch=mysqli_fetch_array($runabc);
+            
+            $schema_insert .= "$fetch[0]".$sep;
+            $schema_insert .= "$fetch[1]".$sep;
+            $schema_insert .= " $days".$sep."\n";
+            //$schema_insert = str_replace($sep."$", "", $schema_insert);
+           // $schema_insert = preg_replace("/\r\n|\n\r|\n|\r/", " ", $schema_insert);
+           // $schema_insert .= "\t"; 
+           // print(trim(str_replace(',', " ", $schema_insert)));
+
+           // print "\n";
+            
+           
+}
+ file_put_contents('Aging.xls', $schema_insert);
+ require 'phpmail/src/Exception.php';
+require 'phpmail/src/PHPMailer.php';
+require 'phpmail/src/SMTP.php';
+//require 'PHPMailerAutoload.php';
+
+$mail = new PHPMailer\PHPMailer\PHPMailer();
+
+$mail->IsSMTP();
+//IsSMTP(); // send via SMTP
+//$mail->SMTPAuth = true;
+$mail->SMTPDebug = 1; 
+//$mail->Mailer = 'smtp';
+$mail->SMTPAuth = true;
+$mail->Host = "smtp.gmail.com"; // "ssl://smtp.gmail.com" didn't worked'
+
+$mail->Port = 465;
+$mail->SMTPSecure = 'ssl';
+// or try these settings (worked on XAMPP and WAMP):
+ //$mail->Port = 587;
+ //$mail->SMTPSecure = 'tls';
+ 
+ 
+$mail->Username = "ramshankargupta444@gmail.com";
+$mail->Password = "R@mshankar444";
+ 
+$mail->IsHTML(true); // if you are going to send HTML formatted emails
+//$mail->SingleTo = true; // if you want to send a same email to multiple users. multiple emails will be sent one-by-one.
+ 
+$mail->From = 'ramshankargupta444@gmail.com';
+$mail->FromName = "ram";
+ 
+$mail->addAddress("ramshankargupta444@gmail.com","User 1");
+//$mail->addAddress("user.2@gmail.com","User 2");
+ 
+//$mail->addCC("user.3@ymail.com","User 3");
+//$mail->addBCC("user.4@in.com","User 4");
+ 
+//$mail->Subject = "Testing PHPMailer with localhost";
+//$mail->Body = "Hi,<br /><br />This system is working perfectly.";
+ $separator = md5(date('r', time()));
+ $eol = PHP_EOL;
+ $filename = "Aging.xls";
+ $attachment = chunk_split(base64_encode(file_get_contents('Aging.xls')));
+ 
+ //$headers  = "From: ".$from.$eol;
+ //$headers .= "MIME-Version: 1.0".$eol;
+ //$mail->$headers .= "Content-Type: multipart/mixed; boundary=\"".$separator."\"";
+
+ $body = "--".$separator.$eol;
+ //$header .= "Content-type:text/plain; charset=iso-8859-1".$eol;
+ $body .= "Content-Transfer-Encoding: 7bit".$eol.$eol;
+$body .= "This is a MIME encoded message.".$eol;
+ 
+ $body .= "--".$separator.$eol;
+ $body .= "Content-Type: text/html; charset=\"iso-8859-1\"".$eol;
+ $body .= "Content-Transfer-Encoding: 8bit".$eol.$eol;
+ //$body .= $message.$eol;
+ // attachment
+$body .= "--".$separator.$eol;
+$body .= "Content-Type: application/octet-stream;      name=\"".$filename."\"".$eol;
+$body .= "Content-Transfer-Encoding: base64".$eol;
+$body .= "Content-Disposition: attachment;  filename=\"".$filename."\"".$eol.$eol;
+$body .= $attachment.$eol;
+$body .= "--".$separator."--";
+ 
+ //$mail->mailheader=$headers;
+ $mail->Body=$body;
+if(!$mail->Send())
+    echo "Message was not sent <br />PHPMailer Error: " . $mail->ErrorInfo;
+else
+    echo "Message has been sent";
+/*
+$mail = new PHPMailer\PHPMailer\PHPMailer();
+$to = "ramshankargupta444@gmail.com";
+$from = "ex@example.com";
+$subject = "test mail";
+$separator = md5(date('r', time()));
+// carriage return type (we use a PHP end of line constant)
+$eol = PHP_EOL;
+
+// attachment name
+$filename = "Aging.xls";
+
+//$pdfdoc is PDF generated by FPDF
+$attachment = chunk_split(base64_encode(file_get_contents('Aging.xls')));
+
+ // main header
+$headers  = "From: ".$from.$eol;
+$headers .= "MIME-Version: 1.0".$eol; 
+$headers .= "Content-Type: multipart/mixed; boundary=\"".$separator."\"";
+
+// no more headers after this, we start the body! //
+
+$body = "--".$separator.$eol;
+$header .= "Content-type:text/plain; charset=iso-8859-1".$eol;
+$body .= "Content-Transfer-Encoding: 7bit".$eol.$eol;
+$body .= "This is a MIME encoded message.".$eol;
+
+// message
+$body .= "--".$separator.$eol;
+$body .= "Content-Type: text/html; charset=\"iso-8859-1\"".$eol;
+$body .= "Content-Transfer-Encoding: 8bit".$eol.$eol;
+$body .= $message.$eol;
+
+// attachment
+$body .= "--".$separator.$eol;
+$body .= "Content-Type: application/octet-stream;      name=\"".$filename."\"".$eol; 
+$body .= "Content-Transfer-Encoding: base64".$eol;
+$body .= "Content-Disposition: attachment;  filename=\"".$filename."\"".$eol.$eol;
+$body .= $attachment.$eol;
+$body .= "--".$separator."--";
+
+if (mail($to, $subject, $body, $headers)) {
+ //echo "mail send ... OK";
+ ?>
+ <script>
+    alert("mail send Successfuly!!!");
+    window.open("view_qrt.php","_self") ;
+ </script>
+ <?php
+} else {
+ echo "mail send ... ERROR";
+}
+*/
+?>

@@ -1,0 +1,16 @@
+14300482----Last
+
+14297780---Start
+
+select b.panelid,a.OldPanelID,a.NewPanelID, b.id,b.sendip,a.DVRIP,a.UserName,a.Password,a.ATMID,a.ATMShortName,b.createtime,b.receivedtime,a.DVRName,b.panelid,b.alerttype,b.location,b.priority from sites a,alerts b where b.sendip='192.168.0.50' and b.sendtoclient='S' and b.status='O' and (b.panelid=a.OldPanelID or b.panelid=a.NewPanelID) and  b.id>=9035652
+order by b.id asc limit 100
+
+Panel ID=000909
+
+ b.id>=15962278
+15962278
+7400070440
+
+INSERT into `healthstatus`(ip) select dvrip from sites where dvrname='hikvision'
+
+UPDATE `esurvsites` a, `table 58` b set a.cssbm=b.`COL 10`,a.cssbmnumber=b.`COL 11`,a.backofficername=b.`COL 12`,a.backofficernumber=b.`COL 13`,a.headsupervisorname=b.`COL 14`,a.headsupervisornumber=b.`COL 15`,a.supervisorname=b.`COL 16`,a.supervisornumber=b.`COL 17`,a.policestation=b.`COL 18`,a.polstnname=b.`COL 19` where a.atm_id=b.`COL 4`
